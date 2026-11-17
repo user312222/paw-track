@@ -1,0 +1,93 @@
+/* ---------- design pass 3: atmosphere, dashboard hero, two-column layout, pet grid, login banner ---------- */
+
+body {
+  background-image:
+    radial-gradient(900px 420px at 85% -120px, color-mix(in srgb, var(--accent) 16%, transparent), transparent 70%),
+    radial-gradient(700px 360px at -10% 120px, color-mix(in srgb, #e0a030 9%, transparent), transparent 70%);
+  background-repeat: no-repeat;
+}
+
+/* section titles get a hairline that fills the row */
+.section-title { margin: 30px 0 12px; }
+.section-title::after { content: ""; flex: 1; height: 1px; background: var(--line); margin-left: 6px; }
+.page-head { margin-bottom: 18px; }
+
+/* nav badge */
+.tab { position: relative; }
+.tab-badge {
+  min-width: 18px; height: 18px; padding: 0 5px; border-radius: 99px; background: var(--bad); color: #fff;
+  font-size: 0.7rem; font-weight: 700; display: inline-grid; place-items: center; line-height: 1;
+}
+.tab[aria-current="page"] .tab-badge { background: #fff; color: var(--bad); }
+@media (max-width: 680px) { .tab-badge { position: absolute; top: 2px; right: 22%; } }
+
+/* dashboard hero */
+.dash-hero {
+  position: relative; overflow: hidden; color: #fff; border-radius: 26px; padding: 26px 26px 22px;
+  background: linear-gradient(120deg, #0b5e58 0%, #0f766e 45%, #2aa198 100%);
+  box-shadow: 0 14px 36px color-mix(in srgb, #0f766e 32%, transparent);
+}
+.dash-hero::before, .dash-hero::after { content: ""; position: absolute; border-radius: 50%; background: rgba(255, 255, 255, 0.07); }
+.dash-hero::before { width: 260px; height: 260px; right: -60px; top: -110px; }
+.dash-hero::after { width: 160px; height: 160px; right: 120px; bottom: -90px; }
+.dash-hero > * { position: relative; z-index: 1; }
+.dash-hero .eyebrow { color: rgba(255, 255, 255, 0.8); }
+.dash-hero h1 { margin: 2px 0 4px; font-size: 2.1rem; color: #fff; }
+.dash-hero p { margin: 0; color: rgba(255, 255, 255, 0.88); }
+.hero-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 20px; }
+.hero-stat { background: rgba(255, 255, 255, 0.13); border: 1px solid rgba(255, 255, 255, 0.18); border-radius: 16px; padding: 12px 14px; backdrop-filter: blur(4px); }
+.hero-stat b { display: block; font-family: ui-serif, Georgia, serif; font-size: 1.9rem; line-height: 1; }
+.hero-stat span { font-size: 0.8rem; opacity: 0.88; }
+.hero-stat.hot { background: #fff; color: var(--bad); border-color: #fff; }
+.hero-stat.hot span { color: #5b2a27; opacity: 1; }
+.hero-actions { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 16px; }
+.hero-actions .btn { background: rgba(255, 255, 255, 0.16); border-color: rgba(255, 255, 255, 0.28); color: #fff; }
+.hero-actions .btn:hover { background: rgba(255, 255, 255, 0.26); }
+.hero-actions .btn.solid { background: #fff; color: #0b5e58; border-color: #fff; }
+@media (max-width: 720px) { .hero-stats { grid-template-columns: repeat(2, 1fr); } .dash-hero { padding: 20px 18px; } .dash-hero h1 { font-size: 1.7rem; } }
+
+.dash-grid { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 0 28px; align-items: start; }
+@media (max-width: 960px) { .dash-grid { grid-template-columns: 1fr; } }
+.dash-grid .bubble { max-width: none; }
+
+/* pet grid */
+.pet-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 14px; }
+.pet-card {
+  display: grid; gap: 12px; padding: 16px; background: var(--surface); border: 1px solid var(--line); border-radius: 20px; box-shadow: var(--shadow);
+  text-decoration: none; color: inherit; transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s;
+}
+.pet-card:hover { transform: translateY(-3px); border-color: color-mix(in srgb, var(--accent) 40%, var(--line)); box-shadow: 0 2px 4px rgba(20, 50, 45, 0.06), 0 14px 30px rgba(20, 50, 45, 0.12); }
+.pet-card .top { display: flex; gap: 12px; align-items: center; }
+.pet-card .name { font-family: ui-serif, Georgia, serif; font-size: 1.25rem; font-weight: 700; line-height: 1.15; }
+.pet-card .foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap; border-top: 1px dashed var(--line); padding-top: 10px; }
+.pet-card.has-plan { border-color: color-mix(in srgb, var(--accent) 35%, var(--line)); }
+
+/* login */
+.login-card { background: var(--surface); border: 1px solid var(--line); border-radius: 26px; box-shadow: var(--shadow); overflow: hidden; }
+.login-banner {
+  position: relative; padding: 34px 26px 26px; color: #fff; text-align: center;
+  background: linear-gradient(135deg, #0b5e58, #0f766e 55%, #2aa198);
+}
+.login-banner::before, .login-banner::after { content: ""; position: absolute; border-radius: 50%; background: rgba(255, 255, 255, 0.08); }
+.login-banner::before { width: 180px; height: 180px; left: -60px; top: -80px; }
+.login-banner::after { width: 130px; height: 130px; right: -40px; bottom: -60px; }
+.login-banner > * { position: relative; z-index: 1; }
+.login-banner .logo { width: 64px; height: 64px; border-radius: 20px; margin: 0 auto 14px; display: grid; place-items: center; background: rgba(255, 255, 255, 0.18); border: 1px solid rgba(255, 255, 255, 0.3); }
+.login-banner h1 { margin: 0; font-size: 1.8rem; color: #fff; }
+.login-banner p { margin: 6px 0 0; color: rgba(255, 255, 255, 0.88); }
+.login-body { padding: 22px 24px 26px; }
+.login-body form.card { border: 0; box-shadow: none; padding: 0; margin: 0; }
+.login-feats { display: grid; gap: 8px; margin: 18px 0 0; padding: 0; list-style: none; font-size: 0.88rem; color: var(--muted); }
+.login-feats li { display: flex; gap: 10px; align-items: center; }
+.login-feats svg { color: var(--accent); flex: none; }
+
+/* empty states */
+.card.empty { padding: 34px 18px; }
+.empty-ico { width: 56px; height: 56px; }
+
+/* focus and motion polish */
+.btn, button { transition: transform 0.08s, background 0.15s, border-color 0.15s, box-shadow 0.15s; }
+.btn.primary:hover, button.primary:hover { box-shadow: 0 6px 16px color-mix(in srgb, var(--accent) 35%, transparent); }
+.list .item { transition: background 0.12s; }
+.step { transition: opacity 0.2s, border-color 0.15s; }
+.step:hover { border-color: color-mix(in srgb, var(--accent) 35%, var(--line)); }
